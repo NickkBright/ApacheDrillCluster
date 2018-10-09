@@ -17,7 +17,6 @@ RUN \
 		 ${ZOOKEEPER_DATALOG_DIR}
 
 
-COPY entrypoint.sh /usr/local/bin
 COPY zoo.cfg	${ZOOKEEPER_CONF_DIR}/
 
 WORKDIR ${ZOOKEEPER_HOME}
@@ -25,4 +24,4 @@ WORKDIR ${ZOOKEEPER_HOME}
 EXPOSE 2181 2888 3888
 
 ENTRYPOINT ["entrypoint.sh"]
-CMD []
+CMD ["-server","1"]

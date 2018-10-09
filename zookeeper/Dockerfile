@@ -23,5 +23,5 @@ WORKDIR ${ZOOKEEPER_HOME}
 
 EXPOSE 2181 2888 3888
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["entrypoint-zk.sh"]
 CMD ["-server","1"]

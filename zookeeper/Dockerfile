@@ -1,9 +1,9 @@
 FROM alt:p8
 
 ENV ZOOKEEPER_HOME		/opt/servers/zookeeper/zookeeper-3.4.13
-ENV ZOOKEEPER_CONF_DIR		${ZOOKEEPER_HOME}/bin
+ENV ZOOKEEPER_CONF_DIR		${ZOOKEEPER_HOME}/conf
 
-ENV PATH			$PATH:${ZOOKEEPER_HOME}
+ENV PATH			$PATH:${ZOOKEEPER_HOME}/bin
 
 RUN \
 	apt-get update
@@ -16,6 +16,7 @@ RUN \
 COPY zoo.cfg			${ZOOKEEPER_CONF_DIR}/
 COPY bin/Entrypoint-zk.sh	/usr/local/bin/
 
+VOLUME ["/zookeeper", "/var/log/zookeeper"]
 WORKDIR ${ZOOKEEPER_HOME}
 
 EXPOSE 2181 2888 3888

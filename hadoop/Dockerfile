@@ -19,7 +19,7 @@ COPY bin/*		/usr/local/bin/
 
 WORKDIR ${HADOOP_HOME}
 
-VOLUME ["/hadoop", "/var/log/hdfs", "${HADOOP_CONF_DIR}"
+VOLUME ["${HADOOP_HOME}"]
 
 
 ENTRYPOINT ["Entrypoint-hdfs.sh"]

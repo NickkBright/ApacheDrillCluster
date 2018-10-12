@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-if [ "$1" = "-server" ]; then 
-	shift
-
 	myid=$1
 	server1=$2
 	server2=$3
@@ -15,6 +12,5 @@ if [ "$1" = "-server" ]; then
 	done
 
 	exec su-exec zookeeper ${ZOOKEEPER_HOME}/bin/zkServer.sh start-foreground
-fi
 
 exec "$@" 

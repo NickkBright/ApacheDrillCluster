@@ -1,7 +1,6 @@
 FROM alt:p8
 
 ENV DRILL_HOME		/opt/servers/drill
-ENV DRILL_CONF_DIR	${DRILL_HOME}/conf
 
 RUN 
 	apt-get update && \
@@ -10,7 +9,7 @@ RUN
 	tar -xzf apache-drill-1.14.0.tar.gz && \
 	mv -T apache-drill-1.14.0 /opt/servers/drill/
 
-VOLUME	["${DRILL_CONF_DIR}"]
+VOLUME	["${DRILL_HOME}"]
 
 WORKDIR ${DRILL_HOME}
 

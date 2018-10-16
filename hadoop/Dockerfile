@@ -7,7 +7,7 @@ ENV $PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
 
 RUN 
 	apt-get update && \
-	apt install open-ssh wget tar && \
+	apt install -y open-ssh wget tar && \
 	wget http://ftp.byfly.by/pub/apache.org/hadoop/common/hadoop-2.8.5/hadoop-2.8.5.tar.gz && \
 	tar -xzf hadoop-2.8.5.tar.gz && \
 	mv hadoop-2.8.5 /opt/services/hadoop/ && \

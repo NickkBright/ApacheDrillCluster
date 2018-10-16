@@ -1,7 +1,6 @@
 FROM alt:p8
 
 ENV ZOOKEEPER_HOME		/opt/servers/zookeeper/zookeeper-3.4.13
-ENV ZOOKEEPER_CONF_DIR		${ZOOKEEPER_HOME}/conf
 
 ENV PATH			$PATH:${ZOOKEEPER_HOME}/bin
 
@@ -21,4 +20,3 @@ WORKDIR ${ZOOKEEPER_HOME}
 EXPOSE 2181 2888 3888
 
 ENTRYPOINT ["entrypoint-zk.sh"]
-CMD ["-server"]

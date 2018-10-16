@@ -14,3 +14,5 @@ VOLUME	["${DRILL_HOME}"]
 WORKDIR ${DRILL_HOME}
 
 EXPOSE 8047
+
+ENTRYPOINT ["Entrypoint-drill.sh"]

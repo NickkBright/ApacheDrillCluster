@@ -2,6 +2,8 @@ FROM alt:p8
 
 ENV DRILL_HOME		/opt/servers/drill
 
+ENV PATH		$PATH:${DRILL_HOME}/bin
+
 RUN 
 	apt-get update && \
 	apt install -y tar wget && \

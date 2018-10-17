@@ -3,7 +3,7 @@ FROM alt:p8
 ENV HADOOP_HOME		/opt/servers/hadoop
 ENV HADOOP_CONF_DIR	${HADOOP_HOME}/etc/hadoop
 
-ENV $PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
+ENV PATH		$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
 
 RUN 
 	apt-get update && \

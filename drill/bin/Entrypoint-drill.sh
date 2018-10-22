@@ -2,5 +2,10 @@ set -e
 
 cluster_id=$1
 quorum=$2
+hdfs_server=$3
 
-printf "drill.exec: {\n cluster-id: \"${cluster_id}\",\n zk: { \n connect:\"${quorum}\", \n root: \"drill\" \n } " >> ${DRILL_HOME}/conf/drill-override.conf
+sed -i -e 's/CLUSTER_ID/${cluster_id}/g' ${DRILL_HOME}/conf/drill-override.conf
+
+sed -i -e 's/ZOOKEEPER_QUORUM/${quorum}/g' ${DRILL_HOME}/conf/drill-override.conf
+
+sed -i -e 's/HDFS_SERVER/${hdfs_server}/g' ${DRILL_HOME}/conf/drill-override.conf

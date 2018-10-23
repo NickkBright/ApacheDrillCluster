@@ -13,7 +13,8 @@ RUN
 	mv hadoop-2.8.5 /opt/services/hadoop/ && \
 	ssh-keygen -t rsa -P -f~/.ssh/id_rsa && \
 	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
-	chmod 0600 ~/.ssh/authorized_keys
+	chmod 0600 ~/.ssh/authorized_keys && \
+	${HADOOP_HOME}/sbin/hdfs namenode -format
 
 COPY bin/*		/usr/local/bin/
 

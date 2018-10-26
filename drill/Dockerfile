@@ -9,6 +9,7 @@ RUN \
 	mkdir opt/servers && mkdir opt/servers/drill && \
 	apt-get update && \
 	apt-get install -y tar which wget && \
+	apt-get install -y java-1.8.0-openjdk-devel && \
 	mirror_url=$( \
         wget -q -O - "http://www.apache.org/dyn/closer.cgi/?as_json=1" \
         | grep "preferred" \

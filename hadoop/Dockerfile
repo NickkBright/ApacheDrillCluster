@@ -21,7 +21,8 @@ RUN \
 	ssh-keygen -t rsa -f ~/.ssh/id_rsa -N "" && \
 	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
 	chmod 0600 ~/.ssh/authorized_keys && \
-	cd ${HADOOP_HOME} && bin/hdfs namenode -format
+	cd ${HADOOP_HOME} && bin/hdfs namenode -format && \
+	${HADOOP_HOME}/sbin/start-dfs.sh
 
 COPY bin/*		/usr/local/bin/
 

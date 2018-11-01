@@ -16,8 +16,7 @@ RUN \
         | sed -n 's#.*"\(http://*[^"]*\)".*#\1#p') && \
 	wget ${mirror_url}drill/drill-1.14.0/apache-drill-1.14.0.tar.gz && \
 	tar -xzf apache-drill-1.14.0.tar.gz && \
-	mv -T apache-drill-1.14.0 /opt/servers/drill/ && \
-	${DRILL_HOME}/bin/drillbit.sh start
+	mv -T apache-drill-1.14.0 /opt/servers/drill/
 	
 
 VOLUME	["${DRILL_HOME}"]

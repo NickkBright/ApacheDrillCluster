@@ -9,7 +9,7 @@ ENV PATH		$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:{JAVA_HOME}/bin
 RUN \
 	mkdir opt/servers && mkdir opt/servers/hadoop && \ 
 	apt-get update && \
-	apt-get install -y openssh-server which wget tar && \
+	apt-get install -y openssh-server which wget tar openssh && \
 	apt-get install -y java-1.8.0-openjdk-devel &&\
 	mirror_url=$( \
         wget -q -O - "http://www.apache.org/dyn/closer.cgi/?as_json=1" \
@@ -27,8 +27,8 @@ COPY bin/*		/usr/local/bin/
 
 WORKDIR ${HADOOP_HOME}
 
+EXPOSE 8088 9000
+
 VOLUME ["${HADOOP_HOME}"]
-
-
-ENTRYPOINT ["Entrypoint-hdfs.sh"]
  
+ENTRYPOINT ["/opt/servers/hadoop/hadoop-2.8.5/sbin/start-dfs.sh"]

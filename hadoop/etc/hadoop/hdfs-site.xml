@@ -3,8 +3,7 @@
 		<name>dfs.replication</name>
 		<value>1</value>
 	</property>
-	<property>
-		<name>>dfs.http.address</name>
+		<name>dfs.http.address</name>
 		<value>0.0.0.0:8088</value>
 	</property>
 </configuration>

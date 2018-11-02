@@ -6,11 +6,11 @@ ENV JAVA_HOME		/usr/lib/jvm/java
 
 ENV PATH		$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:{JAVA_HOME}/bin
 
-RUN \
-	mkdir opt/servers && mkdir opt/servers/hadoop && \ 
+RUN  \
+	mkdir -p opt/servers/hadoop/ && \ 
 	apt-get update && \
 	apt-get install -y openssh-server which wget tar openssh && \
-	apt-get install -y java-1.8.0-openjdk-devel &&\
+	apt-get install -y java-1.8.0-openjdk-devel && \
 	mirror_url=$( \
         wget -q -O - "http://www.apache.org/dyn/closer.cgi/?as_json=1" \
         | grep "preferred" \
@@ -18,9 +18,13 @@ RUN \
 	wget ${mirror_url}hadoop/common/hadoop-2.8.5/hadoop-2.8.5.tar.gz && \
 	tar -xzf hadoop-2.8.5.tar.gz && \
 	mv hadoop-2.8.5 /opt/servers/hadoop/ && \
+	echo 'export JAVA_HOME=/usr/lib/jvm/java' >> /opt/servers/hadoop/hadoop-2.8.5/etc/hadoop/hadoop-env.sh && \
+	/usr/bin/ssh-keygen -A && \
+        service sshd start && \
 	ssh-keygen -t rsa -f ~/.ssh/id_rsa -N "" && \
 	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
 	chmod 0600 ~/.ssh/authorized_keys && \
+	ssh-keyscan localhost, 0.0.0.0 > ~/.ssh/known_hosts && \
 	cd ${HADOOP_HOME} && bin/hdfs namenode -format
 
 COPY bin/*		/usr/local/bin/
@@ -31,4 +35,4 @@ EXPOSE 8088 9000
 
 VOLUME ["${HADOOP_HOME}"]
  
-ENTRYPOINT ["/opt/servers/hadoop/hadoop-2.8.5/sbin/start-dfs.sh"]
+CMD /usr/sbin/sshd && /opt/servers/hadoop/hadoop-2.8.5/sbin/start-dfs.sh

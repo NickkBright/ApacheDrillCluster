@@ -1,7 +1,13 @@
-version: 2
+version: 3
+
+services:
+	container_name: "zookeeper-1"
+	build: ./zookeeper
+	networks:
+	  - vnet
+
 
 
 networks:
   vnet:
-    external:
-      name: vnet 
+     

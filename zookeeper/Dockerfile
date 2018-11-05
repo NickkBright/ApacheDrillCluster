@@ -1,11 +1,11 @@
 FROM alt:p8
 
-ENV ZOOKEEPER_HOME		/opt/servers/zookeeper/zookeeper-3.4.13
+ENV ZOOKEEPER_HOME		/opt/servers/zookeeper/zookeeper-3.4.12
 
 ENV PATH			$PATH:${ZOOKEEPER_HOME}/bin
 
 RUN \
-	mkdir /opt/servers && mkdir /opt/servers/zookeeper && \
+	mkdir -p /opt/servers/zookeeper && \
 	apt-get update && \
 	apt-get install -y wget tar java-1.8.0-openjdk-devel && \
 	mirror_url=$( \
@@ -17,8 +17,7 @@ RUN \
 	mv -T zookeeper-3.4.12 /opt/servers/zookeeper/ 
 
 COPY bin/Entrypoint-zk.sh	/usr/local/bin/
-
-VOLUME ["${ZOOKEEPER_HOME}"]
+COPY conf/zoo.cfg		${ZOOKEEPER_HOME}/conf/
 
 WORKDIR ${ZOOKEEPER_HOME}
 

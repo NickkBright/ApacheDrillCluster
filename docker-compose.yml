@@ -1,12 +1,26 @@
 version: 3
 
 services:
-	container_name: "zookeeper-1"
-	build: ./zookeeper
+  zoo-1:
+    build:
+	context: ./zookeeper
 	networks:
 	  - vnet
+	ports:
+	  - 2181:2181
+	args:
+	  quorum: 'server.1=0.0.0.0:2888:3888'
+	  server_num: '1'
 
+  hdfs:
+    build:
+	context: ./hadoop
+	networks:
+	  - vnet
+	ports:
+	  - 8088:8088
 
+  
 
 networks:
   vnet:

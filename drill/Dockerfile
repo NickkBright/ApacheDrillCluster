@@ -4,9 +4,9 @@ ARG cluster_id
 ARG quorum
 ARG hdfs_server
 
-ENV DRILL_HOME		/opt/servers/drill
-ENV DRILL_CONF		/opt/servers/drill/conf
-ENV JAVA_HOME		/usr/lib/jvm/java
+ENV DRILL_HOME		/opt/servers/drill/
+ENV DRILL_CONF		/opt/servers/drill/conf/
+ENV JAVA_HOME		/usr/lib/jvm/java/
 
 ENV PATH		$PATH:${DRILL_HOME}/bin:${JAVA_HOME}/bin
 
@@ -33,7 +33,7 @@ RUN	sed -i -e 's/CLUSTER_ID/${cluster_id}/g' ${DRILL_CONF}/drill-override.conf &
 
 WORKDIR ${DRILL_HOME}
 
-COPY ./conf/*		${DRILL_CONF}
+COPY ./conf/*		${DRILL_CONF}/
 
 EXPOSE 8047
 

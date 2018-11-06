@@ -25,7 +25,7 @@ RUN	mkdir -p /opt/servers/hadoop/ && \
 
 #setting up ssh keys
 	
-RUN	echo 'export JAVA_HOME=/usr/lib/jvm/java' >> /opt/servers/hadoop/hadoop-2.8.5/etc/hadoop/hadoop-env.sh && \
+RUN	echo 'export JAVA_HOME=/usr/lib/jvm/java' >> /opt/servers/hadoop/etc/hadoop/hadoop-env.sh && \
 	/usr/bin/ssh-keygen -A && \
         service sshd start && \
 	ssh-keygen -t rsa -f ~/.ssh/id_rsa -N "" && \

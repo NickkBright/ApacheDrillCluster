@@ -1,8 +1,8 @@
 FROM alt:p8
 
-ENV HADOOP_HOME		/opt/servers/hadoop
-ENV HADOOP_CONF_DIR	${HADOOP_HOME}/etc/hadoop
-ENV JAVA_HOME		/usr/lib/jvm/java
+ENV HADOOP_HOME		/opt/servers/hadoop/
+ENV HADOOP_CONF_DIR	${HADOOP_HOME}/etc/hadoop/
+ENV JAVA_HOME		/usr/lib/jvm/java/
 
 ENV PATH		$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:{JAVA_HOME}/bin
 
@@ -23,9 +23,14 @@ RUN	mkdir -p /opt/servers/hadoop/ && \
 	tar -xzf hadoop-2.8.5.tar.gz && \
 	mv -T  hadoop-2.8.5 /opt/servers/hadoop/
 
-#setting up ssh keys
+COPY ./etc/hadoop/*     /opt/servers/hadoop/etc/hadoop/
+
+
+#setting up ssh keys and configs
 	
-RUN	echo 'export JAVA_HOME=/usr/lib/jvm/java' >> /opt/servers/hadoop/etc/hadoop/hadoop-env.sh && \
+RUN	mkdir -p /var/lib/hadoop/dfs/data && \
+	mkdir -p /var/lib/hadoop/dfs/name && \
+	echo 'export JAVA_HOME=/usr/lib/jvm/java' >> /opt/servers/hadoop/etc/hadoop/hadoop-env.sh && \
 	/usr/bin/ssh-keygen -A && \
         service sshd start && \
 	ssh-keygen -t rsa -f ~/.ssh/id_rsa -N "" && \
@@ -35,8 +40,6 @@ RUN	echo 'export JAVA_HOME=/usr/lib/jvm/java' >> /opt/servers/hadoop/etc/hadoop/
 	cd ${HADOOP_HOME} && bin/hdfs namenode -format
 
 WORKDIR ${HADOOP_HOME}
-
-COPY ./etc/hadoop/*	${HADOOP_CONF_DIR}/
 
 EXPOSE 8088 9000
  

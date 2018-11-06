@@ -1,6 +1,7 @@
-version: 3
+version: '3'
 
 services:
+
   zoo-1:
     build:
       context: ./zookeeper

@@ -5,12 +5,12 @@ services:
   zoo-1:
     build:
       context: ./zookeeper
+      args:
+        quorum: 'server.1=0.0.0.0:2888:3888'
+        server_num: '1'
     ports:
       - 2181:2181
-    args:
-      quorum: 'server.1=0.0.0.0:2888:3888'
-      server_num: '1'
-
+  
   hdfs:
     build:
       context: ./hadoop
@@ -20,14 +20,15 @@ services:
   drill-1:
     build:
       context: ./drill
+      args:
+        cluster_id: 'drillbit'
+        hdfs_server: 'hdfs://hdfs:9000'
+        quorum: 'server.1=0.0.0.0:2888:3888'
+
     ports:
       - 8047:8047
-    args:
-      cluster_id: 'drillbit'
-      hdfs_server: 'hdfs://hdfs:9000'
-      quorum: 'server.1=0.0.0.0:2888:3888'
     tty: true
     depends_on:
-        - "zoo1"
-        - "hdfs"
+      - "zoo1"
+      - "hdfs"
      

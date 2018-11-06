@@ -9,7 +9,7 @@ ENV PATH		$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:{JAVA_HOME}/bin
 #installing necessary packages
 
 RUN	apt-get update && \
-	apt-get install -y openssh-server which wget tar openssh java-1.8.0-openjdk-devel && \
+	apt-get install -y openssh-server which wget tar openssh java-1.8.0-openjdk-devel
 	
 
 #downloading and repacking

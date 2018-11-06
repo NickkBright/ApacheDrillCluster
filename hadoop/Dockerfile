@@ -36,7 +36,7 @@ RUN	echo 'export JAVA_HOME=/usr/lib/jvm/java' >> /opt/servers/hadoop/etc/hadoop/
 
 WORKDIR ${HADOOP_HOME}
 
-COPY ./etc/hadoop/*	${HADOOP_CONF_DIR}
+COPY ./etc/hadoop/*	${HADOOP_CONF_DIR}/
 
 EXPOSE 8088 9000
  

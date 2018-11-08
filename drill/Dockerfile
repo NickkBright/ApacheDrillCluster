@@ -27,7 +27,7 @@ RUN	mkdir -p /opt/servers/drill/ && \
 
 #setting up configuration
 
-RUN	CLUSTER_ID=${cluster_id} HDFS_SERVER=${hdfs_server} ZOOKEEPER_QUORUM=${quorum} envsubst < ${DRILL_CONF}/drill-override.conf > ${DRILL_CONF}/drill-override.conf
+RUN	CLUSTER_ID=$cluster_id HDFS_SERVER=$hdfs_server ZOOKEEPER_QUORUM=$quorum envsubst < /opt/servers/drill/conf/drill-override.conf > /opt/servers/drill/conf/drill-override.conf
 
 WORKDIR ${DRILL_HOME}
 

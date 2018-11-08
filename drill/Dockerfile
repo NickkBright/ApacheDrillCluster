@@ -13,7 +13,7 @@ ENV PATH		$PATH:${DRILL_HOME}/bin:${JAVA_HOME}/bin
 #intalling necessary packages
 
 RUN	apt-get update && \
-	apt-get install -y tar which wget java-1.8.0-openjdk-devel
+	apt-get install -y tar which gettext wget java-1.8.0-openjdk-devel
 
 #downloading and unpacking
 

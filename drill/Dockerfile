@@ -35,4 +35,4 @@ COPY ./conf/*		${DRILL_CONF}/
 
 EXPOSE 8047
 
-CMD /opt/servers/drill/bin/drill-embedded
+CMD /opt/servers/drill/bin/drill-embedded && echo 'Drill has started...' && sleep infinity

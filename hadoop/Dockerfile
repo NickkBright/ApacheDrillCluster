@@ -43,4 +43,4 @@ WORKDIR ${HADOOP_HOME}
 
 EXPOSE 8088 9000
  
-CMD /usr/sbin/sshd && /opt/servers/hadoop/sbin/start-dfs.sh
+CMD /usr/sbin/sshd && /opt/servers/hadoop/sbin/start-dfs.sh && echo 'HDFS has started...' && sleep infinity

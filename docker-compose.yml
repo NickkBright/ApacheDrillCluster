@@ -10,12 +10,14 @@ services:
         server_num: '1'
     ports:
       - 2181:2181
+    networks: ["vnet"]
   
   hdfs:
     build:
       context: ./hadoop
     ports:
         - 8088:8088
+    networks: ["vnet"]
 
   drill-1:
     build:
@@ -31,4 +33,9 @@ services:
     depends_on:
       - "zoo-1"
       - "hdfs"
-     
+    networks: ["vnet"]
+
+networks: 
+  vnet:
+    external: 
+      name: vnet      

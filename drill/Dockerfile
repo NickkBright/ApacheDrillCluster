@@ -37,4 +37,4 @@ COPY ./conf/*		${DRILL_CONF}/
 
 EXPOSE 8047
 
-CMD /opt/servers/drill/bin/drillbit.sh start
+CMD /opt/servers/drill/bin/drill-embedded

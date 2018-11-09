@@ -1,7 +1,13 @@
+#using Alt linux 8
+
 FROM alt:p8
+
+#arguments for configuration
 
 ARG server_num
 ARG quorum
+
+#necessary environment variables
 
 ENV ZOOKEEPER_HOME		/opt/servers/zookeeper
 ENV ZOOKEEPER_CONF		${ZOOKEEPER_HOME}/conf
@@ -24,16 +30,24 @@ RUN	mirror_url=$( \
 	tar -xzf zookeeper-3.4.12.tar.gz && \
 	mv -T zookeeper-3.4.12 /opt/servers/zookeeper/ 
 
+#copying conf files from host
+
+COPY ./conf/*		${ZOOKEEPER_CONF}/
+
 #inserting conf parameters
 
 RUN	mkdir -p /var/lib/zookeeper && \
 	echo $quorum >> ${ZOOKEEPER_CONF}/zoo.cfg && \
 	echo $server_num > /var/lib/zookeeper/myid
 
-COPY conf/zoo.cfg		${ZOOKEEPER_HOME}/conf
+#setting working directory
 
 WORKDIR ${ZOOKEEPER_HOME}
 
+#exposing ports
+
 EXPOSE 2181 2888 3888
+
+#starting service
 
 CMD /opt/servers/zookeeper/bin/zkServer.sh start && echo 'Zookeeper service started...' && sleep infinity

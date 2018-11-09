@@ -49,4 +49,4 @@ EXPOSE 8047
 
 #starting drill
 
-CMD /opt/servers/drill/bin/drill-embedded && echo 'Drill has started...' && sleep infinity
+CMD /opt/servers/drill/bin/drillbit.sh start && echo 'Drillbit has started...' && sleep infinity

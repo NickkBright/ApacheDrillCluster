@@ -1,4 +1,8 @@
+#using Alt linux image
+
 FROM alt:p8
+
+#necessary environmental variables 
 
 ENV HADOOP_HOME		/opt/servers/hadoop/
 ENV HADOOP_CONF_DIR	${HADOOP_HOME}/etc/hadoop/
@@ -23,8 +27,9 @@ RUN	mkdir -p /opt/servers/hadoop/ && \
 	tar -xzf hadoop-2.8.5.tar.gz && \
 	mv -T  hadoop-2.8.5 /opt/servers/hadoop/
 
-COPY ./etc/hadoop/*     /opt/servers/hadoop/etc/hadoop/
+#copying conf files
 
+COPY ./etc/hadoop/*     /opt/servers/hadoop/etc/hadoop/
 
 #setting up ssh keys and configs
 	
@@ -39,8 +44,14 @@ RUN	mkdir -p /var/lib/hadoop/dfs/data && \
 	ssh-keyscan localhost, 0.0.0.0 > ~/.ssh/known_hosts && \
 	cd ${HADOOP_HOME} && bin/hdfs namenode -format
 
+#setting working directory
+
 WORKDIR ${HADOOP_HOME}
 
+#exposing ports
+
 EXPOSE 8088 9000
+
+#starting hdfs
  
 CMD /usr/sbin/sshd && /opt/servers/hadoop/sbin/start-dfs.sh && echo 'HDFS has started...' && sleep infinity

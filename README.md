@@ -2,4 +2,8 @@
 
 Zookeeper, Drill and Hadoop docker containers based on ALT linux 8.2.
 
-(STILL IN DEVELOPMENT)
+## How to start cluster?
+
+1) Install docker and docker-compose
+
+2) Execute in terminal or CMD `docker-compose up`

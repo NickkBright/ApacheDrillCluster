@@ -1,8 +1,14 @@
+#using Alt linux image
+
 FROM alt:p8
+
+#arguments for conf file
 
 ARG cluster_id
 ARG quorum
 ARG hdfs_server
+
+#necessary environmental variables 
 
 ENV DRILL_HOME		/opt/servers/drill/
 ENV DRILL_CONF		/opt/servers/drill/conf/
@@ -25,14 +31,22 @@ RUN	mkdir -p /opt/servers/drill/ && \
 	tar -xzf apache-drill-1.14.0.tar.gz && \
 	mv -T apache-drill-1.14.0 /opt/servers/drill/
 
+#copying configuration files
+
+COPY ./conf/*		${DRILL_CONF}/
+
 #setting up configuration
 
 RUN	CLUSTER_ID=$cluster_id HDFS_SERVER=$hdfs_server ZOOKEEPER_QUORUM=$quorum envsubst < /opt/servers/drill/conf/drill-override.conf > /opt/servers/drill/conf/drill-override.conf
 
+#setting working directory
+
 WORKDIR ${DRILL_HOME}
 
-COPY ./conf/*		${DRILL_CONF}/
+#exposing port for host
 
 EXPOSE 8047
+
+#starting drill
 
 CMD /opt/servers/drill/bin/drill-embedded && echo 'Drill has started...' && sleep infinity

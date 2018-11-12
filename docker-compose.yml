@@ -8,7 +8,7 @@ services:
     build:
       context: ./zookeeper
       args:
-        quorum: 'server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=0.0.0.0:2888:3888'
+        quorum: 'server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888'
         server_num: '1'
     networks: 
       vnet:
@@ -21,7 +21,7 @@ services:
     build:
       context: ./zookeeper
       args:
-        quorum: 'server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=0.0.0.0:2888:3888'
+        quorum: 'server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888'
         server_num: '2'
     networks: 
       vnet:
@@ -34,7 +34,7 @@ services:
     build:
       context: ./zookeeper
       args:
-        quorum: 'server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=0.0.0.0:2888:3888'
+        quorum: 'server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888'
         server_num: '3'
     networks: 
       vnet:

@@ -18,8 +18,8 @@ ENV PATH		$PATH:${DRILL_HOME}/bin:${JAVA_HOME}/bin
 
 #intalling necessary packages
 
-RUN	yum update && \
-	yum -y install tar which gettext wget java-1.8.0-openjdk-devel
+RUN	yum update -y && \
+	yum install -y tar which gettext wget java-1.8.0-openjdk-devel
 
 #downloading and unpacking
 

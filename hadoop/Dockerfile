@@ -12,8 +12,8 @@ ENV PATH		$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:{JAVA_HOME}/bin
 
 #installing necessary packages
 
-RUN	yum update && \
-	yum -y install openssh-server openssh-clients which wget tar java-1.8.0-openjdk-devel
+RUN	yum update -y && \
+	yum install -y openssh-server openssh-clients which wget tar java-1.8.0-openjdk-devel
 	
 
 #downloading and repacking

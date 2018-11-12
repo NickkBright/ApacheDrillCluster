@@ -16,8 +16,8 @@ ENV PATH			$PATH:${ZOOKEEPER_HOME}/bin
 
 #installing necessary packages
 
-RUN	yum update && \
-	yum -y install wget tar java-1.8.0-openjdk-devel
+RUN	yum update -y && \
+	yum install -y wget tar java-1.8.0-openjdk-devel
 
 #downloading and unpacking
 

@@ -37,7 +37,7 @@ RUN	mkdir -p /var/lib/hadoop/dfs/data && \
 	mkdir -p /var/lib/hadoop/dfs/name && \
 	echo 'export JAVA_HOME=/usr/lib/jvm/java' >> /opt/servers/hadoop/etc/hadoop/hadoop-env.sh && \
 	/usr/bin/ssh-keygen -A && \
-        service sshd start && \
+        /usr/bin/sshd && \
 	ssh-keygen -t rsa -f ~/.ssh/id_rsa -N "" && \
 	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
 	chmod 0600 ~/.ssh/authorized_keys && \

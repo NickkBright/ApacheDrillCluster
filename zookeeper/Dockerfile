@@ -1,6 +1,6 @@
-#using Alt linux 8
+#using CentOS linux image
 
-FROM alt:p8
+FROM centos:7
 
 #arguments for configuration
 
@@ -16,13 +16,13 @@ ENV PATH			$PATH:${ZOOKEEPER_HOME}/bin
 
 #installing necessary packages
 
-RUN	mkdir -p /opt/servers/zookeeper && \
-	apt-get update && \
-	apt-get install -y wget tar java-1.8.0-openjdk-devel
+RUN	yum update && \
+	yum -y install wget tar java-1.8.0-openjdk-devel
 
 #downloading and unpacking
 
-RUN	mirror_url=$( \
+RUN	mkdir -p /opt/servers/zookeeper/ && \
+	mirror_url=$( \
         wget -q -O - "http://www.apache.org/dyn/closer.cgi/?as_json=1" \
         | grep "preferred" \
         | sed -n 's#.*"\(http://*[^"]*\)".*#\1#p') && \  

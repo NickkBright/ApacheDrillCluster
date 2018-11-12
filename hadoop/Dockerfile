@@ -1,6 +1,6 @@
-#using Alt linux image
+#using CentOS linux image
 
-FROM alt:p8
+FROM centos:7
 
 #necessary environmental variables 
 
@@ -12,8 +12,8 @@ ENV PATH		$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:{JAVA_HOME}/bin
 
 #installing necessary packages
 
-RUN	apt-get update && \
-	apt-get install -y openssh-server which wget tar openssh java-1.8.0-openjdk-devel
+RUN	yum update && \
+	yum -y install openssh-server openssh-clients which wget tar java-1.8.0-openjdk-devel
 	
 
 #downloading and repacking

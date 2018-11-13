@@ -1,6 +1,6 @@
-#using Alt linux image
+#using CentOS linux image
 
-FROM alt:p8
+FROM centos:7
 
 #necessary environmental variables 
 
@@ -12,8 +12,8 @@ ENV PATH		$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:{JAVA_HOME}/bin
 
 #installing necessary packages
 
-RUN	apt-get update && \
-	apt-get install -y openssh-server which wget tar openssh java-1.8.0-openjdk-devel
+RUN	yum update -y && \
+	yum install -y openssh-server openssh-clients which wget tar java-1.8.0-openjdk-devel
 	
 
 #downloading and repacking
@@ -36,8 +36,8 @@ COPY ./etc/hadoop/*     /opt/servers/hadoop/etc/hadoop/
 RUN	mkdir -p /var/lib/hadoop/dfs/data && \
 	mkdir -p /var/lib/hadoop/dfs/name && \
 	echo 'export JAVA_HOME=/usr/lib/jvm/java' >> /opt/servers/hadoop/etc/hadoop/hadoop-env.sh && \
-	/usr/bin/ssh-keygen -A && \
-        service sshd start && \
+	ssh-keygen -A && \
+        /usr/sbin/sshd && \
 	ssh-keygen -t rsa -f ~/.ssh/id_rsa -N "" && \
 	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
 	chmod 0600 ~/.ssh/authorized_keys && \

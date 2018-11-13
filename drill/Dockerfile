@@ -1,6 +1,6 @@
-#using Alt linux image
+#using CentOS linux image
 
-FROM alt:p8
+FROM centos:7
 
 #arguments for conf file
 
@@ -18,8 +18,8 @@ ENV PATH		$PATH:${DRILL_HOME}/bin:${JAVA_HOME}/bin
 
 #intalling necessary packages
 
-RUN	apt-get update && \
-	apt-get install -y tar which gettext wget java-1.8.0-openjdk-devel
+RUN	yum update -y && \
+	yum install -y tar which gettext wget java-1.8.0-openjdk-devel
 
 #downloading and unpacking
 

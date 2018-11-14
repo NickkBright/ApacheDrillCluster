@@ -3,7 +3,7 @@ version: '3'
 services:
 
   zoo-1:
-    hostname: zoo1
+    hostname: zoo-1
     restart: always
     build:
       context: ./zookeeper
@@ -18,7 +18,7 @@ services:
           - zoo-1
   
   zoo-2:
-    hostname: zoo2
+    hostname: zoo-2
     restart: always
     build:
       context: ./zookeeper
@@ -33,7 +33,7 @@ services:
           - zoo-2
   
   zoo-3:
-    hostname: zoo3
+    hostname: zoo-3
     restart: always
     build:
       context: ./zookeeper
@@ -58,7 +58,7 @@ services:
           - hdfs
 
   drill-1:
-    hostname: drill1
+    hostname: drill-1
     build:
       context: ./drill
       args:
@@ -79,7 +79,7 @@ services:
           - drill-1
 
   drill-2:
-    hostname: drill2
+    hostname: drill-2
     build:
       context: ./drill
       args:
@@ -97,7 +97,7 @@ services:
           - drill-2
   
   drill-3:
-    hostname: drill3
+    hostname: drill-3
     build:
       context: ./drill
       args:
@@ -115,7 +115,7 @@ services:
           - drill-3
   
   drill-4:
-    hostname: drill4
+    hostname: drill-4
     build:
       context: ./drill
       args:

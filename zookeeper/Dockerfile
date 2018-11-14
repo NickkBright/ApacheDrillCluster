@@ -37,7 +37,7 @@ COPY ./conf/*		${ZOOKEEPER_CONF}/
 #inserting conf parameters
 
 RUN	mkdir -p /var/lib/zookeeper && \
-	echo $quorum >> ${ZOOKEEPER_CONF}/zoo.cfg && \
+	printf $quorum >> ${ZOOKEEPER_CONF}/zoo.cfg && \
 	echo $server_num > /var/lib/zookeeper/myid
 
 #setting working directory

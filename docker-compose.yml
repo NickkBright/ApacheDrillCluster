@@ -8,7 +8,7 @@ services:
     build:
       context: ./zookeeper
       args:
-        quorum: 'server.1=0.0.0.0:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888'
+        quorum: 'server.1=0.0.0.0:2888:3888\nserver.2=zoo-2:2888:3888\nserver.3=zoo-3:2888:3888'
         server_num: '1'
     ports:
       - 2181:2181
@@ -23,7 +23,7 @@ services:
     build:
       context: ./zookeeper
       args:
-        quorum: 'server.1=zoo1:2888:3888 server.2=0.0.0.0:2888:3888 server.3=zoo3:2888:3888'
+        quorum: 'server.1=zoo-1:2888:3888\nserver.2=0.0.0.0:2888:3888\nserver.3=zoo-3:2888:3888'
         server_num: '2'
     ports:
       - 2182:2181
@@ -38,7 +38,7 @@ services:
     build:
       context: ./zookeeper
       args:
-        quorum: 'server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=0.0.0.0:2888:3888'
+        quorum: 'server.1=zoo-1:2888:3888\nserver.2=zoo-2:2888:3888\nserver.3=0.0.0.0:2888:3888'
         server_num: '3'
     ports:
       - 2183:2181
@@ -64,7 +64,7 @@ services:
       args:
         cluster_id: 'drillbit'
         hdfs_server: 'hdfs://hdfs:9000'
-        quorum: 'zoo1:2181,zoo2:2181,zoo3:2181'
+        quorum: 'zoo-1,zoo-2,zoo-3'
 
     ports:
       - 8047:8047
@@ -85,7 +85,7 @@ services:
       args:
         cluster_id: 'drillbit'
         hdfs_server: 'hdfs://hdfs:9000'
-        quorum: 'zoo1:2181,zoo2:2181,zoo3:2181'
+        quorum: 'zoo-1,zoo-2,zoo-3'
     depends_on:
       - "zoo-1"
       - "zoo-2"
@@ -103,7 +103,7 @@ services:
       args:
         cluster_id: 'drillbit'
         hdfs_server: 'hdfs://hdfs:9000'
-        quorum: 'zoo1:2181,zoo2:2181,zoo3:2181'
+        quorum: 'zoo-1,zoo-2,zoo-3'
     depends_on:
       - "zoo-1"
       - "zoo-2"
@@ -121,7 +121,7 @@ services:
       args:
         cluster_id: 'drillbit'
         hdfs_server: 'hdfs://hdfs:9000'
-        quorum: 'zoo1:2181,zoo2:2181,zoo3:2181'
+        quorum: 'zoo-1,zoo-2,zoo-3'
     depends_on:
       - "zoo-1"
       - "zoo-2"
@@ -130,7 +130,7 @@ services:
     networks: 
       vnet:
         aliases: 
-          - drill-2
+          - drill-4
 
 networks: 
   vnet:

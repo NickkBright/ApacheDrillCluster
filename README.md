@@ -13,4 +13,4 @@ Udf directories stored in HDFS.
 
 3) Execute in terminal or CMD `docker-compose up` from the root directory of cloned repository
 
-4) Wait for minute!
+4) When the drill nodes in `docker ps` will have healthy status, cluster is ready

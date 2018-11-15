@@ -77,6 +77,11 @@ services:
       vnet:
         aliases: 
           - drill-1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "drill-1:8047"]
+      interval: 20s
+      timeout: 3s
+      retries: 10
 
   drill-2:
     hostname: drill-2
@@ -95,6 +100,12 @@ services:
       vnet:
         aliases: 
           - drill-2
+    healthcheck:
+      test: ["CMD", "curl", "-f", "drill-2:8047"]
+      interval:	20s
+      timeout: 3s
+      retries: 10
+
   
   drill-3:
     hostname: drill-3
@@ -113,6 +124,12 @@ services:
       vnet:
         aliases: 
           - drill-3
+    healthcheck:
+      test: ["CMD", "curl", "-f", "drill-3:8047"]
+      interval:	20s
+      timeout: 3s
+      retries: 10
+
   
   drill-4:
     hostname: drill-4
@@ -131,6 +148,11 @@ services:
       vnet:
         aliases: 
           - drill-4
+    healthcheck:
+      test: ["CMD", "curl", "-f", "drill-4:8047"]
+      interval:	20s
+      timeout: 3s
+      retries: 10
 
 networks: 
   vnet:

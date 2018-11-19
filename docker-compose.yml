@@ -6,6 +6,9 @@ services:
     hostname: zoo-1
     restart: always
     image: nickkbright/zoo1:latest
+    deploy:
+      mode: replicated
+      replicas: 2
     networks:
       vnet:
         aliases: 
@@ -15,6 +18,9 @@ services:
     hostname: zoo-2
     restart: always
     image: nickkbright/zoo2:latest
+    deploy:
+      mode: replicated
+      replicas: 2
     networks: 
       vnet:
         aliases: 
@@ -24,6 +30,9 @@ services:
     hostname: zoo-3
     restart: always
     image: nickkbright/zoo3:latest
+    deploy:
+      mode: replicated
+      replicas: 2
     networks: 
       vnet:
         aliases: 
@@ -31,6 +40,9 @@ services:
   
   hdfs:
     image: nickkbright/hdfs:latest
+    deploy:
+      mode: replicated
+      replicas: 2
     ports:
         - 8088:8088
     networks: 
@@ -41,6 +53,9 @@ services:
   drill-1:
     hostname: drill-1
     image: nickkbright/apache-drill:1-14
+    deploy:
+      mode: replicated
+      replicas: 2
     ports:
       - 8047:8047
     depends_on:
@@ -61,6 +76,9 @@ services:
   drill-2:
     hostname: drill-2
     image: nickkbright/apache-drill:1-14
+    deploy:
+      mode: replicated
+      replicas: 2
     depends_on:
       - "zoo-1"
       - "zoo-2"
@@ -80,6 +98,9 @@ services:
   drill-3:
     hostname: drill-3
     image: nickkbright/apache-drill:1-14
+    deploy:
+      mode: replicated
+      replicas: 2
     depends_on:
       - "zoo-1"
       - "zoo-2"
@@ -99,6 +120,9 @@ services:
   drill-4:
     hostname: drill-4
     image: nickkbright/apache-drill:1-14
+    deploy:
+      mode: replicated
+      replicas: 2
     depends_on:
       - "zoo-1"
       - "zoo-2"

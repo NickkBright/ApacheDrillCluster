@@ -15,8 +15,4 @@ UDF directories are storing in HDFS.
 
 4) When the drill nodes in `docker ps` will have healthy status, cluster is ready
 
-
-## TODO
-
-1) Push all images to Docker Hub
-2) Modify docker-compose for swarm
+### Swarm mode haven't been tested yet

@@ -68,7 +68,7 @@ services:
         aliases: 
           - drill-1
     healthcheck:
-      test: ["/usr/local/bin/restart.sh 1"]
+      test: CMD /usr/local/bin/restart.sh 1
       interval: 50s
       timeout: 3s
       retries: 3
@@ -89,7 +89,7 @@ services:
         aliases: 
           - drill-2
     healthcheck:
-      test: ["/usr/local/bin/restart.sh 2"]
+      test: CMD /usr/local/bin/restart.sh 2
       interval: 50s
       timeout: 3s
       retries: 3
@@ -111,7 +111,7 @@ services:
         aliases: 
           - drill-3
     healthcheck:
-      test: ["/usr/local/bin/restart.sh 3"]
+      test: CMD /usr/local/bin/restart.sh 3
       interval: 50s
       timeout: 3s
       retries: 3
@@ -133,7 +133,7 @@ services:
         aliases: 
           - drill-4
     healthcheck:
-      test: ["/usr/local/bin/restart.sh 4"]
+      test: CMD /usr/local/bin/restart.sh 4
       interval: 50s
       timeout: 3s
       retries: 3

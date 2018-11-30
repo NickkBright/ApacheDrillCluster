@@ -34,6 +34,7 @@ RUN	mkdir -p /opt/servers/drill/ && \
 #copying configuration files
 
 COPY ./conf/*		${DRILL_CONF}/
+COPY ./bin/*		/usr/local/bin/
 
 #setting up configuration
 

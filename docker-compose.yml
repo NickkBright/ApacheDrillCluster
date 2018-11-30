@@ -68,10 +68,10 @@ services:
         aliases: 
           - drill-1
     healthcheck:
-      test: ["CMD", "curl", "-f", "drill-1:8047"]
-      interval: 20s
+      test: ["/usr/local/bin/restart.sh 1"]
+      interval: 50s
       timeout: 3s
-      retries: 10
+      retries: 3
 
   drill-2:
     hostname: drill-2
@@ -89,10 +89,10 @@ services:
         aliases: 
           - drill-2
     healthcheck:
-      test: ["CMD", "curl", "-f", "drill-2:8047"]
-      interval: 20s
+      test: ["/usr/local/bin/restart.sh 2"]
+      interval: 50s
       timeout: 3s
-      retries: 10
+      retries: 3
 
   
   drill-3:
@@ -111,10 +111,10 @@ services:
         aliases: 
           - drill-3
     healthcheck:
-      test: ["CMD", "curl", "-f", "drill-3:8047"]
-      interval: 20s
+      test: ["/usr/local/bin/restart.sh 3"]
+      interval: 50s
       timeout: 3s
-      retries: 10
+      retries: 3
 
   
   drill-4:
@@ -133,10 +133,10 @@ services:
         aliases: 
           - drill-4
     healthcheck:
-      test: ["CMD", "curl", "-f", "drill-4:8047"]
-      interval: 20s
+      test: ["/usr/local/bin/restart.sh 4"]
+      interval: 50s
       timeout: 3s
-      retries: 10
+      retries: 3
 
 networks: 
   vnet:

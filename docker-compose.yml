@@ -52,7 +52,7 @@ services:
 
   drill-1:
     hostname: drill-1
-    image: nickkbright/apache-drill:1-14
+    image: nickkbright/apache-drill:latest
     deploy:
       mode: replicated
       replicas: 2
@@ -75,7 +75,7 @@ services:
 
   drill-2:
     hostname: drill-2
-    image: nickkbright/apache-drill:1-14
+    image: nickkbright/apache-drill:latest
     deploy:
       mode: replicated
       replicas: 2
@@ -97,7 +97,7 @@ services:
   
   drill-3:
     hostname: drill-3
-    image: nickkbright/apache-drill:1-14
+    image: nickkbright/apache-drill:latest
     deploy:
       mode: replicated
       replicas: 2
@@ -119,7 +119,7 @@ services:
   
   drill-4:
     hostname: drill-4
-    image: nickkbright/apache-drill:1-14
+    image: nickkbright/apache-drill:latest
     deploy:
       mode: replicated
       replicas: 2

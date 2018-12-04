@@ -42,7 +42,8 @@ RUN	mkdir -p /var/lib/hadoop/dfs/data && \
 	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
 	chmod 0600 ~/.ssh/authorized_keys && \
 	ssh-keyscan localhost, 0.0.0.0 > ~/.ssh/known_hosts && \
-	cd ${HADOOP_HOME} && bin/hdfs namenode -format
+	cd ${HADOOP_HOME} && bin/hdfs namenode -format && \
+	rm -rf /hadoop-2.8.5.tar.gz
 
 #setting working directory
 

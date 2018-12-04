@@ -33,15 +33,14 @@ RUN	mkdir -p /opt/servers/drill/ && \
 
 #copying configuration files
 
-
 COPY ./conf/* ${DRILL_CONF}
 COPY ./bin/*  /usr/local/bin/
 
-#setting up configuration
+#setting up configuration and removing tar.gz
 
-RUN	CLUSTER_ID=$cluster_id HDFS_SERVER=$hdfs_server ZOOKEEPER_QUORUM=$quorum envsubst < /opt/servers/drill/conf/drill-override.conf > /opt/servers/drill/conf/drill-override.conf && \
-	chmod +x /usr/local/bin/restart.sh
-
+RUN	CLUSTER_ID=$cluster_id HDFS_SERVER=$hdfs_server ZOOKEEPER_QUORUM=$quorum envsubst < /opt/servers/drill/conf/configuration.conf > /opt/servers/drill/conf/drill-override.conf && \
+	chmod +x /usr/local/bin/restart.sh && \
+	rm -rf /apache-drill-1.14.0.tar.gz
 
 #setting working directory
 

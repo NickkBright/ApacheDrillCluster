@@ -38,7 +38,8 @@ COPY ./conf/*		${ZOOKEEPER_CONF}/
 
 RUN	mkdir -p /var/lib/zookeeper && \
 	printf $quorum >> ${ZOOKEEPER_CONF}/zoo.cfg && \
-	echo $server_num > /var/lib/zookeeper/myid
+	echo $server_num > /var/lib/zookeeper/myid && \
+	rm -rf /zookeeper-3.4.12.tar.gz
 
 #setting working directory
 

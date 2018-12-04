@@ -33,12 +33,15 @@ RUN	mkdir -p /opt/servers/drill/ && \
 
 #copying configuration files
 
-COPY ./conf/*		${DRILL_CONF}/
-COPY ./bin/*		/usr/local/bin/
+
+COPY ./conf/* ${DRILL_CONF}
+COPY ./bin/*  /usr/local/bin/
 
 #setting up configuration
 
-RUN	CLUSTER_ID=$cluster_id HDFS_SERVER=$hdfs_server ZOOKEEPER_QUORUM=$quorum envsubst < /opt/servers/drill/conf/drill-override.conf > /opt/servers/drill/conf/drill-override.conf
+RUN	CLUSTER_ID=$cluster_id HDFS_SERVER=$hdfs_server ZOOKEEPER_QUORUM=$quorum envsubst < /opt/servers/drill/conf/drill-override.conf > /opt/servers/drill/conf/drill-override.conf && \
+	chmod +x /usr/local/bin/restart.sh
+
 
 #setting working directory
 
@@ -50,4 +53,4 @@ EXPOSE 8047
 
 #starting drill
 
-CMD /opt/servers/drill/bin/drillbit.sh start && echo 'Drillbit has started...' && sleep infinity
+CMD sleep 20s && /opt/servers/drill/bin/drillbit.sh start && echo 'Drillbit has started...' && sleep infinity

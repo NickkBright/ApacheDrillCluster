@@ -1,0 +1,83 @@
+version: '3'
+
+services:
+
+  zoo-1:
+    hostname: zoo-1
+    restart: always
+    image: nickkbright/zoo1:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+    networks:
+      vnet:
+        aliases: 
+          - zoo-1
+  
+  zoo-2:
+    hostname: zoo-2
+    restart: always
+    image: nickkbright/zoo2:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+    networks: 
+      vnet:
+        aliases: 
+          - zoo-2
+  
+  zoo-3:
+    hostname: zoo-3
+    restart: always
+    image: nickkbright/zoo3:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+    networks: 
+      vnet:
+        aliases: 
+          - zoo-3
+  
+  hdfs:
+    image: nickkbright/hdfs:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+    ports:
+        - 8088:8088
+    networks: 
+      vnet:
+        aliases: 
+          - hdfs
+
+  drill-1:
+    hostname: drill-1
+    build:
+      context: ./drill
+      args:
+        cluster_id: 'drillbit'
+        hdfs_server: 'hdfs://hdfs:9000'
+        quorum: 'zoo-1:2181,zoo-2:2181,zoo-3:2181'
+    ports:
+      - 8047:8047
+    depends_on:
+      - "zoo-1"
+      - "zoo-2"
+      - "zoo-3"
+      - "hdfs"
+    networks: 
+      vnet:
+        aliases: 
+          - drill-1
+    healthcheck:
+      test: CMD /usr/local/bin/restart.sh 1
+      interval: 50s
+      timeout: 3s
+      retries: 3
+
+
+networks: 
+  vnet:
+    driver: bridge    
+
+  

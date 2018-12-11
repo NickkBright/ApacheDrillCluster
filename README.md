@@ -19,9 +19,7 @@ Install Docker CE and cd to cloned repo root folder
 
 ### Swarm mode
 
-1) Run `docker swarm init --advertise-addr <MANAGER-IP>`, where MANAGER-IP is the ip-address of your host machine.
-
-1.1) You can add another machines to your swarm cluster and connect them via generated token.
+1) Run `docker swarm init --advertise-addr <MANAGER-IP>`, where MANAGER-IP is the ip-address of your host machine. You can add another machines to your swarm cluster and connect them via generated token.
 
 2) Create overlay network with `vnet` name: `docker network create -d overlay vnet'`
 

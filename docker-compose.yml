@@ -4,11 +4,7 @@ services:
 
   zoo-1:
     hostname: zoo-1
-    restart: always
     image: nickkbright/zoo1:latest
-    deploy:
-      mode: replicated
-      replicas: 2
     networks:
       vnet:
         aliases: 
@@ -16,11 +12,7 @@ services:
   
   zoo-2:
     hostname: zoo-2
-    restart: always
     image: nickkbright/zoo2:latest
-    deploy:
-      mode: replicated
-      replicas: 2
     networks: 
       vnet:
         aliases: 
@@ -28,11 +20,7 @@ services:
   
   zoo-3:
     hostname: zoo-3
-    restart: always
     image: nickkbright/zoo3:latest
-    deploy:
-      mode: replicated
-      replicas: 2
     networks: 
       vnet:
         aliases: 
@@ -68,7 +56,7 @@ services:
         aliases: 
           - drill-1
     healthcheck:
-      test: CMD /usr/local/bin/restart.sh 1
+      test: ["CMD", "/usr/local/bin/restart.sh", "1"]
       interval: 50s
       timeout: 3s
       retries: 3
@@ -89,7 +77,7 @@ services:
         aliases: 
           - drill-2
     healthcheck:
-      test: CMD /usr/local/bin/restart.sh 2
+      test: ["CMD", "/usr/local/bin/restart.sh", "2"]
       interval: 50s
       timeout: 3s
       retries: 3
@@ -111,7 +99,7 @@ services:
         aliases: 
           - drill-3
     healthcheck:
-      test: CMD /usr/local/bin/restart.sh 3
+      test: ["CMD", "/usr/local/bin/restart.sh", "3"]
       interval: 50s
       timeout: 3s
       retries: 3
@@ -133,11 +121,11 @@ services:
         aliases: 
           - drill-4
     healthcheck:
-      test: CMD /usr/local/bin/restart.sh 4
+      test: ["CMD", "/usr/local/bin/restart.sh", "4"]
       interval: 50s
       timeout: 3s
       retries: 3
 
 networks: 
   vnet:
-    driver: bridge    
+    driver: overlay

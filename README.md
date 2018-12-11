@@ -1,4 +1,4 @@
-# Docker Containers
+# APACHE DRILL 4-NODE CLUSTER WITH HDFS SUPPORT
 
 Zookeeper, Drill and Hadoop HDFS docker containers based on Cent OS 7. 
 Zookeeper cluster has 3 nodes.
@@ -7,12 +7,24 @@ UDF directories are storing in HDFS.
 
 ## How to start cluster?
 
-1) Install docker and docker-compose
+Install Docker CE and cd to cloned repo root folder
 
-2) Clone this repo
+### Local mode 
 
-3) Execute in terminal or CMD `docker-compose up` from the root directory of cloned repository
+1) Execute in terminal or CMD `docker-compose -f manual-setup.yml build`
 
-4) When the drill nodes in `docker ps` will have healthy status, cluster is ready
+2) Execute in terminal or CMD `docker-compose -f manual-setup.yml up`
 
-### Swarm mode haven't been tested yet
+3) Wait for 1-2 minutes as the cluster needs time for startup.
+
+### Swarm mode
+
+1) Run `docker swarm init --advertise-addr <MANAGER-IP>`, where MANAGER-IP is the ip-address of your host machine.
+
+1.1) You can add another machines to your swarm cluster and connect them via generated token.
+
+2) Create overlay network with `vnet` name: `docker network create -d overlay vnet'`
+
+3) Run `docker stack deploy --compose-file docker-compose.yml drillStack`
+
+4) Wait for 2-3 minutes as the cluster needs time for startup.

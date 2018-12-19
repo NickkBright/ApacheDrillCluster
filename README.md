@@ -1,4 +1,4 @@
-# APACHE DRILL 4-NODE CLUSTER WITH HDFS SUPPORT
+# Apache Drill 4-node cluster with HDFS support
 
 Zookeeper, Drill and Hadoop HDFS docker containers based on Cent OS 7. 
 Zookeeper cluster has 3 nodes.

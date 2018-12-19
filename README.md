@@ -11,9 +11,9 @@ Install Docker CE and cd to cloned repo root folder
 
 ### Local mode 
 
-1) Run `docker-compose -f manual-setup.yml build`
+1) Run `docker-compose -f local-setup.yml build`
 
-2) Run `docker-compose -f manual-setup.yml up`
+2) Run `docker-compose -f local-setup.yml up`
 
 3) Wait for 1-2 minutes as the cluster needs time for startup.
 
@@ -23,6 +23,6 @@ Install Docker CE and cd to cloned repo root folder
 
 2) Create overlay network with `vnet` name. Run `docker network create -d overlay vnet`
 
-3) Run `docker stack deploy --compose-file docker-compose.yml drillStack`
+3) Run `docker stack deploy --compose-file swarm-setup.yml drillStack`
 
 4) Wait for 2-3 minutes as the cluster needs time for startup.

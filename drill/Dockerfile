@@ -35,7 +35,7 @@ RUN	mkdir -p /opt/servers/drill/ && \
 
 COPY ./conf/* ${DRILL_CONF}
 COPY ./bin/*  /usr/local/bin/
-COPY ./addons/* ${DRILL_HOME}/jars/3rdparty
+COPY ./addons/* ${DRILL_HOME}/jars/3rdparty/
 
 #setting up configuration and removing tar.gz
 
